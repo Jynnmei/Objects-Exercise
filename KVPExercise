@@ -233,3 +233,92 @@ console.log(game.items);
 // console.log(game.party);
 // console.log(game.collection);
 // console.log(game.items[1].quantity);
+
+
+Exercise 19
+function catchPokemon(pokemon) {
+  const pokeball = game.items.find((item) => item.name === "pokeball");
+  if (pokeball.quantity <= 0) {
+    console.log("Out of Pokéballs!");
+    return;
+  }
+
+  pokeball.quantity -= 1;
+}
+console.log(game.items.find((item) => item.name === "pokeball").quantity);
+
+
+Exercise 20
+const pokemonData = [
+  { number: 1, name: "Bulbasaur", type: "Grass", HP: 45, starter: true },
+  { number: 4, name: "Charmander", type: "Fire", HP: 42, starter: true },
+  { number: 7, name: "Squirtle", type: "Water", HP: 35, starter: true },
+  { number: 25, name: "Pikachu", type: "Electric", HP: 30, starter: true },
+  { number: 100, name: "Mewtwo", type: "Psychic", HP: 106, starter: false },
+];
+
+function catchPokemon(pokemonName) {
+  if (typeof pokemonName !== "string") {
+    return "Error: Invalid Pokémon name provided!";
+  }
+
+  const formattedPokemonName = pokemonName.split(" ").join("").toLowerCase();
+  const foundPokemon = pokemonData.find(
+    (p) => p.name.split(" ").join("").toLowerCase() === formattedPokemonName
+  );
+
+  if (!foundPokemon) {
+    return `Error: Pokemon "${pokemonName}" does not exist!`;
+  }
+  
+  const pokeball = game.items.find((item) => item.name === "pokeball");
+
+  if (!pokeball || pokeball.quantity <= 0) {
+    return "Error: Not enough Pokeballs to catch the Pokémon!";
+  }
+  pokeball.quantity -= 1;
+
+
+  if (game.party.length < 6) {
+    game.party.push(foundPokemon);
+    return `${foundPokemon.name} has joined the party!`;
+  } else {
+    game.collection.push(foundPokemon); 
+    return `${foundPokemon.name} has been added to the collection!`;
+  }
+}
+
+console.log(catchPokemon("PiKacHU")); 
+console.log(catchPokemon("mewtwo")); 
+console.log(catchPokemon("Aegislash")); 
+
+
+
+Exercise 21
+const game = {
+  grass: [
+    { number: 1, name: "Bulbasaur", type: "grass", hp: 45, starter: true },
+    { number: 2, name: "Ivysaur", type: "grass", hp: 60, starter: false },
+    { number: 3, name: "Venusaur", type: "grass", hp: 80, starter: false },
+  ],
+  fire: [
+    { number: 4, name: "Charmander", type: "fire", hp: 39, starter: true },
+    { number: 6, name: "Heatran", type: "fire", hp: 33, starter: false },
+  ],
+  water: [
+    { number: 7, name: "Squirtle", type: "water", hp: 35, starter: true },
+    { number: 10, name: "Empoleon", type: "water", hp: 42, starter: true },
+  ],
+  electric: [
+    { number: 25, name: "Pikachu", type: "electric", hp: 30, starter: true },
+    { number: 15, name: "Pachirisu", type: "electric", hp: 41, starter: true },
+  ],
+};
+
+const pokemonByType = {};
+
+for (let type in game) {
+  pokemonByType[type] = game[type];
+}
+
+console.log(pokemonByType);
