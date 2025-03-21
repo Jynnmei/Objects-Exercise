@@ -3,7 +3,7 @@ const pokemon = [
   { Number: 1, Name: "Bulbasaur", Type: "Grass", HP: 45, Starter: true },
   { Number: 4, Name: "Charmander", Type: "Fire", HP: 42, Starter: true },
   { Number: 7, Name: "Squirtle", Type: "Water", HP: 35, Starter: true },
-  { Number: 22, Name: "Pikachu", Type: "Electric", HP: 30, Starter: true },
+  { Number: 25, Name: "Pikachu", Type: "Electric", HP: 30, Starter: true },
 ];
 
 // console.dir(pokemon, { maxArrayLength: null });
@@ -83,9 +83,153 @@ game.gyms.forEach((gym) => {
     gym.completed = true;
   }
 });
-
 console.log(game.gyms);
 
 
 Exercise 7
+const newChangesForNumName = {
+  1: { Number: 2, Name: "Ivysaur" },
+  4: { Number: 5, Name: "Charmeleon" },
+  7: { Number: 8, Name: "Wartortle" },
+  25: { Number: 26, Name: "Raichu" },
+};
 
+pokemon.forEach((poke, pokeIndex) => {
+  if (newChangesForNumName[poke.Number]) {
+    pokemon.splice(pokeIndex, 1, {
+      ...poke,
+      ...newChangesForNumName[poke.Number],
+    });
+  }
+});
+
+console.log(pokemon);
+
+
+Exercise 8
+pokemon.forEach((poke) => {
+  console.log(poke.Name);
+});
+
+
+Exercise 9
+for (const poke of pokemon) {
+  if (poke.Starter) {
+    console.log(poke.Name);
+  }
+}
+
+
+Exercise 10
+game.catchPokemon = function (pokemonObj) {
+  game.party.push(pokemonObj);
+};
+
+game.catchPokemon(pokemon[1]);
+console.log(game.party);
+
+
+Exercise 11
+game.catchPokemon = function (pokemonObj) {
+  for (let i = 0; i < game.items.length; i++) {
+    if (game.items[i].name === "pokeball") {
+      game.items[i].quantity -= 1;
+      break;
+    }
+  }
+
+  game.party.push(pokemonObj);
+};
+
+game.catchPokemon(pokemon[0]);
+
+console.log(game.party);
+console.log(game.items);
+
+
+Exercise 12
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 6) {
+    gym.completed = true;
+  }
+});
+
+console.log(game.gyms);
+
+
+Exercise 13
+function gymStatus() {
+  const gymTally = {
+    completed: 0,
+    incomplete: 0,
+  };
+
+  for (const gym of game.gyms) {
+    if (gym.completed === true) {
+      gymTally.completed += 1;
+    } else {
+      gymTally.incomplete += 1;
+    }
+  }
+
+  console.log(gymTally);
+}
+
+
+Exercise 14
+function partyCount() {
+  return game.party.length;
+}
+
+console.log(partyCount(game));
+
+
+Exercise 15
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 8) {
+    gym.completed = true;
+  }
+});
+
+console.log(game.gyms);
+
+
+Exercise 16
+console.log(game);
+
+
+Exercise 17
+pokemon1.party.sort((a, b) => b.HP - a.HP);
+console.log(pokemon1.party);
+
+
+Exercise 18
+game.collection = [];
+
+function catchPokemon(pokemon) {
+  if (game.items[1].quantity > 0) {
+    game.items[1].quantity -= 1;
+  } else {
+    console.log("No pokeballs left!");
+    return;
+  }
+  if (game.party.length < 6) {
+    game.party.push(pokemon);
+  } else {
+    game.collection.push(pokemon);
+  }
+}
+const newPokemon = {
+  Number: 30,
+  Name: "Aegislash",
+  Type: "Ghost",
+  HP: 40,
+  Starter: false,
+};
+
+catchPokemon(newPokemon);
+
+console.log(game.items);
+// console.log(game.party);
+// console.log(game.collection);
+// console.log(game.items[1].quantity);
