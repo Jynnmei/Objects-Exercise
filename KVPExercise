@@ -1,0 +1,91 @@
+Exercise 1
+const pokemon = [
+  { Number: 1, Name: "Bulbasaur", Type: "Grass", HP: 45, Starter: true },
+  { Number: 4, Name: "Charmander", Type: "Fire", HP: 42, Starter: true },
+  { Number: 7, Name: "Squirtle", Type: "Water", HP: 35, Starter: true },
+  { Number: 22, Name: "Pikachu", Type: "Electric", HP: 30, Starter: true },
+];
+
+// console.dir(pokemon, { maxArrayLength: null });
+
+const foundPokemon = null;
+for (const poke of pokemon) {
+  if (poke.Number === 59) {
+    foundPokemon = poke;
+    break;
+  }
+}
+console.log(foundPokemon);
+
+Exercise 2
+const game = {
+  party: [
+    { Number: 1, Name: "Bulbasaur", Type: "Grass", HP: 45, Starter: true },
+    { Number: 4, Name: "Charmander", Type: "Fire", HP: 42, Starter: true },
+    { Number: 7, Name: "Squirtle", Type: "Water", HP: 35, Starter: true },
+    { Number: 22, Name: "Pikachu", Type: "Electric", HP: 30, Starter: true },
+  ],
+
+  gyms: [
+    { location: "Pewter City", completed: false, difficulty: 1 },
+    { location: "Cerulean City", completed: false, difficulty: 2 },
+    { location: "Vermilion City", completed: false, difficulty: 3 },
+    { location: "Celadon City", completed: false, difficulty: 4 },
+    { location: "Fuchsia City", completed: false, difficulty: 5 },
+    { location: "Saffron City", completed: false, difficulty: 6 },
+    { location: "Cinnabar Island", completed: false, difficulty: 7 },
+    { location: "Viridian City", completed: false, difficulty: 8 },
+  ],
+  items: [
+    { name: "potion", quantity: 4 },
+    { name: "pokeball", quantity: 8 },
+    { name: "rare candy", quantity: 99 },
+  ],
+};
+
+console.log(game.party);
+console.log(game.gyms); 
+console.log(game.items);
+
+Exercise 3
+const game = {
+Level: [
+    { difficulty: "Easy" },
+    { difficulty: "Med" },
+    { difficulty: "Hard" },
+  ],
+};
+
+console.log(game.Level);
+
+
+Exercise 4
+const starterPokemons = pokemon.filter((poke) => poke.Starter);
+game.party.push(...starterPokemons);
+
+pokemon.forEach((poke) => {
+  if (poke.Starter) 
+    console.log(poke);
+});
+
+
+Exercise 5
+const selectedPokemon = pokemon.filter((poke) => poke.HP > 40).slice(0, 2);
+let party = [];
+party.push(...selectedPokemon);
+
+console.log(party);
+
+
+Exercise 6
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 3) {
+    gym.completed = true;
+  }
+});
+
+console.log(game.gyms);
+
+
+Exercise 7
+
